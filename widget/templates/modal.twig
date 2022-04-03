@@ -1,0 +1,48 @@
+<div id="nika_aero-cost_modal" class="nika-aero-cost-modal">
+    <div class="nika-aero-cost-modal__content-wrap">
+        <div id="step-switcher">
+            {# https://codepen.io/aaroniker/pen/mNOJbm
+        https://codepen.io/aaroniker/pen/YRKGPV
+            #}
+
+            <ul>
+                <li class="switch-item"><a id="switch-step-1" class="active" data-step-id="1" href="#">Шаг 1. Опции</a></li>
+                <li class="switch-item"><a id="switch-step-2" data-step-id="2" href="#">Шаг 2. Таблицы</a></li>
+                <li class="switch-item"><a id="switch-step-3" data-step-id="3" href="#">Шаг 3. Финал</a></li>
+            </ul>
+        </div>
+        <div id="current-currency-rates">Rates</div>
+        {# <div id="custom-currency-rates">
+        #}{# "custom_currency_rate_need": "Использовать свой курс" #}{#
+        {% include 'templates/elements/form_element.twig' with {
+            params: step_1_params.custom_currency_rate_need
+        } %}
+        #}{# "custom_currency_rate_USD": "Свой курс USD" #}{#
+        {% include 'templates/elements/form_element.twig' with {
+            params: step_1_params.custom_currency_rate_USD
+        } %}
+        #}{# "custom_currency_rate_EUR": "Свой курс EUR" #}{#
+        {% include 'templates/elements/form_element.twig' with {
+            params: step_1_params.custom_currency_rate_EUR
+        } %}
+    </div> #}
+        <div class="nika-aero-cost-modal__content">
+            <div class="form-step__wrapper active" id="step-form-wrapper-1">
+                {% include 'templates/form_step_1.twig' with {
+                    params: step_1_params
+                } %}
+            </div>
+            <div class="form-step__wrapper " id="step-form-wrapper-2">
+            </div>
+            <div class="form-step__wrapper" id="step-form-wrapper-3">
+            </div>
+        </div>
+
+
+        {% if closeOption %}
+            <div id="nika_aero-cost_modal_close" title="Закрыть" class="nika-aero-cost-modal__close">×</div>
+        {% endif %}
+
+
+    </div>
+</div>

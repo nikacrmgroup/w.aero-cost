@@ -1,0 +1,154 @@
+{# <h3>{{ params.title }}</h3> #}
+{# <code>{{ dump(params) }}</code> #}
+<div class="chosen-product">Продукт {{ params.product }}</div>{# <span style="color: darkred">Виджет в режиме добавления новых функций</span> #}
+<div class="step-content">
+    <form id="step-1-form" action="">
+        {# "departure_country": "Страна отправления" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.departure_country
+        } %}
+        {# "departure_point": "Пункт отправления" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.departure_point
+        } %}
+        {# Экспедирование в пункте отправления 	флаг и если да, то "Адрес забора груза" выводим в шаге 1 #}
+        {% if params.forwarding_departure_need.value == 'Да' and params.pickup_address.value is not empty %}
+            {# "pickup_address": "Адрес забора груза" #}
+            {% include 'templates/elements/form_element.twig' with {
+                params: params.pickup_address
+            } %}
+        {% endif %}
+        {# "destination_country": "Страна назначения" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.destination_country
+        } %}
+        {# "destination_point": "Пункт назначения" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.destination_point
+        } %}
+        {# Экспедирование в пункте назанчения флаг и если да, то "Адрес доставки груза" выводим в шаге 1 #}
+        {% if params.forwarding_destination_need.value == 'Да' %}
+            {# "shipping_address": "Адрес доставки груза" #}
+            {% include 'templates/elements/form_element.twig' with {
+                params: params.shipping_address
+            } %}
+        {% endif %}
+        {# "cargo_type": "Тип груза" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.cargo_type
+        } %}
+        {# "cargo_name": "Наименование груза" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.cargo_name
+        } %}
+        {# "cargo_cost": "Стоимость груза" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.cargo_cost
+        } %}
+        {# "currency": "Тип валюты" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.currency
+        } %}
+
+        {# "packaging_need": "Тип упаковки", #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.packaging_need
+        } %}
+
+        {# "seat_qty": "Кол-во мест" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.seat_qty
+        } %}
+        {# "physical_weight": "Физический вес" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.physical_weight
+        } %}
+        {# "volume": "Объем" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.volume
+        } %}
+        {# "volume_weight": "Объемный вес" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.volume_weight
+        } %}
+        {# "payable_weight": "Оплачиваемый вес" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.payable_weight
+        } %}
+        {# "cargo_density": "Плотность груза" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.cargo_density
+        } %}
+
+        {# "cargo_dimensions": "Размеры груза" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.cargo_dimensions
+        } %}
+
+        {# "danger_comment": "Коммент. к опасности" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.danger_comment
+        } %}
+        {# "temp_mode": "Темп. режим" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.temp_mode
+        } %}
+        {# "mode_comment": "Коммент. к режиму" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.mode_comment
+        } %}
+        {# "TO_need": "Нужно ТО" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.TO_need
+        } %}
+        {# "heavyweight": "Тяжеловес" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.heavyweight
+        } %}
+        {# "danger": "Опасный" #}
+        {# {% include 'templates/elements/form_element.twig' with {
+            params: params.danger
+        } %} #}
+        {# "danger_declaration_need": "Нужна декларация опасного груза", #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.danger_declaration_need
+        } %}
+        {# "insurance_need": "Нужно страхование" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.insurance_need
+        } %}
+        {# "import_TO_need": "Нужно Импортное ТО" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.import_TO_need
+        } %}
+        {# "export_TO_need": "Нужно Экспортное ТО" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.export_TO_need
+        } %}
+
+        {# Использовать свой курс флаг #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.custom_currency_rate_need
+        } %}
+        {# "custom_currency_rate_USD": "Свой курс USD" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.custom_currency_rate_USD
+        } %}
+        {# "custom_currency_rate_EUR": "Свой курс EUR" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.custom_currency_rate_EUR
+        } %}
+
+
+    </form>
+    <div class="step-actions-wrapper">
+        {% set button_text = 'Сохранить' %}
+        {{ include_control('button', {
+            text: button_text   ,
+            id: 'step_1_save-button' ,
+            blue: true
+        }) }}
+        <span class="nika-widget-version" style="font-size: 10px; padding-left: 150px; color:#4c4c4c">{{ params.version }}</span>
+    </div>
+
+</div>

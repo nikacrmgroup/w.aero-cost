@@ -1,0 +1,7 @@
+{% for item in items if item.is_checked %}
+    <div class="checkboxes_dropdown__title-item" {% if is_first and title_before %}data-title-before="{{ title_before }}"{% endif %}>
+        {{ need_escape ? item.option|escape : item.option }}
+    </div>
+    {% set is_first = false %}
+{% endfor %}
+<span>{{ version }}</span>

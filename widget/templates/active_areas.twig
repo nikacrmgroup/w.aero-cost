@@ -1,0 +1,30 @@
+<div class="nika-elements-block__wrap">
+    <div class="nika-elements-block__title">Выберите область работы виджета</div>
+    <div class="nika-elements-block">
+        <div class="area-wrapper">
+            <div class="nika-active-area-element">
+                {% for area in areas %}
+                    <div class="area-element">
+                        {#<label>
+                            <input type="checkbox" name="area.{{ area.value }}" {% if area.is_checked %}checked{% endif %}>
+                            <span class="nika-active-area-name ">{{ area.name }}</span>
+                        </label>#}
+                        <div class="nika-task-notify-checkbox">
+                            <input type="checkbox"
+                                   class="nika-task-notify-checkbox__input"
+                                   name="area.{{ area.value }}"
+                                   id="area-{{ area.value }}"
+                                   {% if area.is_checked %}checked{% endif %}>
+                            <label for="area-{{ area.value }}"
+                                   class="nika-task-notify-checkbox__label">
+                                <span class="nika-task-notify-checkbox__label-box"></span>
+                                <span class="nika-task-notify-checkbox__label-text">{{ area.name }}</span>
+                            </label>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>

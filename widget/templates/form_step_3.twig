@@ -1,0 +1,42 @@
+<h3>{{ params.title }}</h3>
+<div class="step-content">
+
+    <form id="step-3-form" action="">
+        {# {% include 'templates/partials/commission.twig' with {
+            commission: params.commission
+        } %} #}
+        {% if params.tables.arrival.rows is not empty %}
+            {% include 'templates/elements/cost_table_step3.twig' with {
+                params: params.tables.arrival,
+                total_field: params.common.total_destination
+            } %}
+        {% endif %}
+        {% if params.tables.delivery.rows is not empty %}
+            {% include 'templates/elements/cost_table_step3.twig' with {
+                params: params.tables.delivery,
+                common: params.common,
+                total_field: params.common.total_delivery
+            } %}
+        {% endif %}
+        {% if params.tables.extra.rows is not empty %}
+            {% include 'templates/elements/cost_table_step3.twig' with {
+                params: params.tables.extra,
+                common: params.common,
+                total_field: params.common.total_add_services
+            } %}
+        {% endif %}
+        {% include 'templates/elements/cost_table_step3.twig' with {
+            params: params.tables.total,
+            common: params.common,
+            total_field: params.common.total_with_commission
+        } %}
+        <div class="step-actions-wrapper">
+            {% set button_text = 'Сохранить' %}
+            {{ include_control('button', {
+                text: button_text,
+                id: 'step_3_save-button' ,
+                blue: true
+            }) }}
+        </div>
+    </form>
+</div>

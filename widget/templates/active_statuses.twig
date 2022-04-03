@@ -1,0 +1,38 @@
+<div class="nika-elements-block__wrap">
+    <div class="nika-elements-block__title">Активные статусы сделок</div>
+    <div class="nika-elements-block">
+        <div class="nika-active-status-element">
+            {% for pipeline in pipelines %}
+                <div class="nika-task-notify-pipeline">
+                    <div class="nika-task-notify-pipeline__title">
+                        {{ pipeline.name }}
+                    </div>
+                    <div class="nika-task-notify-pipeline__statuses statuses-wrapper">
+                        {% for status in pipeline.statuses %}
+                            <div class="status-element nika-task-notify-pipeline__status ">
+                                <div class="nika-task-notify-pipeline__status-color"
+                                     style="background-color: {{ status.color }}"></div>
+                                <div class="nika-task-notify-checkbox">
+                                    <input type="checkbox"
+                                           class="nika-task-notify-checkbox__input"
+                                           name="status.{{ pipeline.id }}.{{ status.id }}"
+                                           id="status-{{ pipeline.id }}-{{ status.id }}"
+                                           {% if status.is_checked %}checked{% endif %}>
+                                    <label for="status-{{ pipeline.id }}-{{ status.id }}"
+                                           class="nika-task-notify-checkbox__label">
+                                        <span class="nika-task-notify-checkbox__label-box"></span>
+                                        <span class="nika-task-notify-checkbox__label-text">{{ status.name }}</span>
+                                    </label>
+                                </div>
+                                {#<label>
+                                    <input type="checkbox" name="status.{{ pipeline.id }}.{{ status.id }}" {% if status.is_checked %}checked{% endif %}>
+                                    <span style="background-color: {{ status.color }}" class="nika-active-status-name ">{{ status.name }}</span>
+                                </label>#}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="form-group step-element" id="el-air-routes-carriers">
+    <span class="field-name">Перевозчики</span>
+    {% set class_name_altered = 'form-field field-value cost-field-value field_air_route_carriers' %}
+    {% for route in params %}
+        {% set name = 'step-input-'~ route.id %}
+        {% set id = name %}
+        {{ include_control('input', {
+            name: name,
+            id: id,
+            class_name: class_name_altered,
+            placeholder: '...',
+            value: route.value
+        }) }}
+
+    {% endfor %}
+</div>
+

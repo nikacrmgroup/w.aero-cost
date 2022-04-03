@@ -1,0 +1,108 @@
+<h3>{{ params.title }}</h3>
+<div class="step-content">
+    <form id="step-2-form" action="">
+        {# {{ dump(params.commission) }} #}
+        {% include 'templates/partials/commission.twig' with {
+            commission: params.commission
+        } %}
+        {# TODO disabled #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.payable_weight
+        } %}
+        {# "cargo_density": "Плотность груза" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.cargo_density
+        } %}
+        {# {% set arr = params.common.calc_comment|merge({'required': true}) %} #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.calc_comment,
+            required: true
+        } %}
+
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.transit
+        } %}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.auto_route
+        } %}
+        {% include 'templates/elements/air_route.twig' with {
+            params: params.air_routes
+        } %}
+        {% include 'templates/elements/air_route_carriers.twig' with {
+            params: params.air_routes_carriers
+        } %}
+        {% include 'templates/elements/auto_route.twig' with {
+            params: params.auto_routes_a,
+            route_type: 'А'
+        } %}
+        {% include 'templates/elements/auto_route.twig' with {
+            params: params.auto_routes_b,
+            route_type: 'Б'
+        } %}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.tariff_durance
+        } %}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.delivery_period,
+            required: true
+        } %}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.departures,
+            required: true
+        } %}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.departures_comments,
+            required: true
+        } %}
+        {# Расчет выполнил calc_performed disabled #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.calc_performed
+        } %}
+        {# "cass": "CASS" #}
+        {% include 'templates/elements/form_element.twig' with {
+            params: params.common.cass
+        } %}
+
+        {% if params.tables.arrival.rows is not empty %}
+            {% include 'templates/elements/cost_table.twig' with {
+                params: params.tables.arrival,
+                terminal_handling_arrival: params.terminal_handling_arrival,
+                terminal_handling_departure: params.terminal_handling_departure,
+                total_field: params.common.total_destination,
+                air_fare_dimension: params.common.air_fare_dimension
+            } %}
+        {% endif %}
+        {% if params.tables.delivery.rows is not empty %}
+            {% include 'templates/elements/cost_table.twig' with {
+                params: params.tables.delivery,
+                common: params.common,
+                terminal_handling_departure: params.terminal_handling_departure,
+                terminal_handling_arrival: params.terminal_handling_arrival,
+                air_fare_dimension: params.common.air_fare_dimension,
+                total_field: params.common.total_delivery
+            } %}
+        {% endif %}
+        {% if params.tables.extra.rows is not empty %}
+            {% include 'templates/elements/cost_table.twig' with {
+                params: params.tables.extra,
+                common: params.common,
+                air_fare_dimension: params.common.air_fare_dimension,
+                total_field: params.common.total_add_services
+            } %}
+        {% endif %}
+        {% include 'templates/elements/cost_table.twig' with {
+            params: params.tables.total,
+            common: params.common,
+            air_fare_dimension: params.common.air_fare_dimension,
+            total_field: params.common.total_wo_commission
+        } %}
+        <div class="step-actions-wrapper">
+            {% set button_text = 'Сохранить' %}
+            {{ include_control('button', {
+                text: button_text,
+                id: 'step_2_save-button' ,
+                blue: true
+            }) }}
+        </div>
+    </form>
+</div>

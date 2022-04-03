@@ -1,0 +1,64 @@
+{#
+https://divtable.com/table-styler/
+#}
+<table class="cost-table " id="table-{{ params.tableId }}">
+    {% if params.header is defined %}
+        <thead>
+        <tr>
+            <th colspan=2>{{ params.header }}</th>
+            <th id="selected-currency-{{ params.tableId }}">
+                {{ params.currency }}
+            </th>
+        </tr>
+        </thead>
+    {% endif %}
+    <tfoot>
+    <tr>
+        <td class="table-total-title">{{ params.footer }}</td>
+        <td class="table-total-value">
+
+            <div class="show-amount"></div>
+            {% if total_field is defined %}
+                {% set param = total_field %}
+                {% set param = param|merge({'disabled': true}) %}
+                {% include 'templates/system/cf.twig' with {
+                    params: param,
+                    name_prefix:'step-input-',
+                    class_name: 'form-field field-value total-field-value',
+                } %}
+            {% endif %}
+        </td>
+        <td class="table-total-currency">РУБ</td>
+    </tr>
+    </tfoot>
+    <tbody>
+    {% for row in params.rows %}
+        <tr id="cell-{{ row.field.code }}">
+            <td>{{ row.title }}</td>
+            <td class="cell-value">
+                {% set class_name_altered = 'form-field field-value cost-field-value field_' ~ row.field.code %}
+                {% include 'templates/system/cf.twig' with {
+                    params: row.field,
+                    name_prefix:'step-input-',
+                    class_name: class_name_altered,
+                    required: row.required
+                } %}
+            </td>
+            <td class="cost-params">
+                <span class="currency">--</span>
+                <span class="dimension">
+                     {% if row.field.code == 'terminal_handling_arrival' %}
+                         {#{{ row.field.value }}#}
+                     {% else %}
+                         {# {{ row.dimension }} #}
+                     {% endif %}
+                </span>
+                <span class="dimension-selector">
+
+                </span>
+            </td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,79 @@
+{% if params is defined %}
+    {# {{ dump(params) }} #}
+    {# Нужны:
+     name-prefix
+        class_name
+    #}
+    {% set name = name_prefix ~ params.id %}
+    {# Для каждого типа поля свой вывод инпута или чекбокса или чего там еще #}
+    {% if params.type in ['text','numeric', 'price','streetaddress', 'url'] %}
+        {% set placeholder = placeholder ? placeholder : 'Введите значение' %}
+        {{ include_control('input', {
+            name: name,
+            id: params.id,
+            class_name: class_name,
+            placeholder: placeholder,
+            value:  params.value,
+            required: required,
+            disabled: params.disabled
+        }) }}
+    {% endif %}
+    {% if params.type in ['textarea'] %}
+        {% set placeholder = placeholder ? placeholder : 'Введите значение' %}
+        {% if required %}
+            {% set class_name = class_name ~ ' aero-field-required' %}
+        {% endif %}
+        {{ include_control('textarea', {
+            name: name,
+            id: params.id,
+            class_name: class_name,
+            placeholder: placeholder,
+            value:  params.value,
+            disabled: params.disabled
+        }) }}
+    {% endif %}
+    {% if params.type == 'checkbox' %}
+
+        {{ include_control('checkbox', {
+            name: name,
+            id: params.id,
+            input_class_name: class_name,
+            checked:  params.value
+        }) }}
+    {% endif %}
+
+    {% set class_name_calendar = class_name ~ ' cost-calendar' %}
+    {% if params.type in ['date','date_time', 'birthday'] %}
+        {{ include_control('date_field', {
+            type: 'single',
+            name: name,
+            id: params.id,
+            value:  params.value,
+            class_name: class_name_calendar,
+            placeholder: 'Выберите дату'
+
+        }) }}
+    {% endif %}
+
+    {% if params.type in ['select', 'radiobutton', 'category'] %}
+        {{ include_control('select', {
+            name: name,
+            items: params.items,
+            id: params.id,
+            class_name: class_name,
+            selected:  params.selected,
+        }) }}
+    {% endif %}
+
+    {% if params.type in ['multiselect'] %}
+
+        {% if required %}
+            {% set class_name = class_name ~ ' aero-field-required' %}
+        {% endif %}
+        {{ include_control('checkboxes_dropdown', {
+            name: name,
+            items: params.items,
+            class_name: class_name,
+        }) }}
+    {% endif %}
+{% endif %}

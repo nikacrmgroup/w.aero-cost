@@ -1,0 +1,145 @@
+table.cost-table {
+
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 5px 0;
+
+  .required-input {
+    border: 1px solid red;
+  }
+
+  .dimension-delimiter {
+    display: none;
+  }
+
+  .terminal-handling-wrapper {
+    display: flex;
+
+  }
+
+  .terminal-handling-input-div {
+    display: flex;
+    align-items: center;
+    width: 50%;
+
+    &:nth-child(2) {
+      margin-right: 20px;
+    }
+  }
+
+  .terminal-handling-container {
+    white-space: nowrap;
+    margin-left: 5px;
+  }
+
+  thead {
+    padding: 8px 12px;
+    color: #3c5b7b;
+    background: #f7f5f5;
+  }
+
+  .table-total-value {
+    input {
+      border: none;
+    }
+  }
+
+  .terminal-handling-input-div-hidden {
+    display: none;
+  }
+
+
+}
+
+#step-2-form {
+  #cell-terminal_handling_departure, #cell-terminal_handling_arrival {
+    .cost-params {
+      .currency {
+        display: none;
+      }
+    }
+  }
+}
+
+table.cost-table td, table.cost-table th {
+
+  padding: 5px 4px;
+}
+
+table.cost-table tbody td {
+
+  &.text-input {
+    height: 18px !important;
+  }
+}
+
+table.cost-table thead {
+  border-bottom: 1px solid #000000;
+}
+
+table.cost-table thead th {
+
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+  border-left: 1px solid #D0E4F5;
+}
+
+table.cost-table thead th:first-child {
+  border-left: none;
+}
+
+table.cost-table tfoot {
+
+  font-weight: bold;
+  color: #000000;
+  border-top: 1px solid #000000;
+}
+
+
+#nika_aero-cost_modal {
+  table.cost-table {
+    margin: 30px 0;
+
+    th {
+      border: 1px solid #b8b9ba;
+      text-transform: uppercase;
+      padding: 5px 12px;
+    }
+
+    td {
+      width: 45%;
+      border: 1px solid #b8b9ba;
+      padding: 5px 12px;
+      vertical-align: middle;
+
+      &:last-child {
+        width: 10%;
+      }
+    }
+  }
+
+}
+
+.field_departures.expanded {
+  .checkboxes_dropdown__list {
+    .checkboxes_dropdown__list__wrapper__inner {
+      display: flex !important;
+    }
+
+  }
+}
+
+#el-air-routes-carriers {
+  input {
+    //width: 110px;
+    &:first-of-type {
+      margin-left: 53px;
+    }
+
+    &:last-of-type {
+      margin-right: 54px;
+    }
+  }
+}

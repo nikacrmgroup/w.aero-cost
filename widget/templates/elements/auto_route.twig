@@ -1,0 +1,18 @@
+<div class="form-group step-element" id="el-auto-routes">
+    <span class="field-name">Маршрут авто {{ route_type }}</span>
+    {% set class_name_altered = 'form-field field-value cost-field-value field_auto_route' %}
+    {% for route in params %}
+        {% set name = 'step-input-'~ route.id %}
+        {% set placeholder = route_type ~ loop.index %}
+        {% set id = name %}
+        {{ include_control('input', {
+            name: name,
+            id: id,
+            class_name: class_name_altered,
+            placeholder: placeholder,
+            value: route.value
+        }) }}
+
+    {% endfor %}
+</div>
+
